@@ -1,0 +1,96 @@
+1. Database Commands
+
+a) View all databases
+    show dbs
+
+b) Create a new or switch databases 
+    use dbName
+
+c)View current Database
+    db
+
+d) Delete Database 
+    db.dropDatabase()
+
+2. Collection Commands
+
+a) Show Collections
+    show collections
+
+b) Create a collection named 'comments'
+    db.createCollection('comments')
+
+c) Drop a collection named 'comments'
+    db.comments.drop()
+
+3. Row(Document) Commands
+a) Insert One Row
+    db.comments.insert({
+        'name': 'Harry',
+        'lang': 'JavaScript',
+        'member_since': 5
+    })
+
+b) Insert many Rows
+    db.comments.insertMany([{
+        'name': 'Harry',
+        'lang': 'JavaScript',
+        'member_since': 5
+        }, 
+        {'name': 'Rohan',
+        'lang': 'Python',
+        'member_since': 3
+        },
+        {'name': 'Lovish',
+        'lang': 'Java',
+        'member_since': 4
+    }])      
+
+c) Show all Rows in a Collection 
+    db.comments.find().pretty()
+
+d) Show all Rows in a Collection (Prettified)
+    db.comments.find().pretty()
+
+d) Find the first row matching the object
+    db.comments.findOne({name: 'Harry'})
+
+e) Search in a MongoDb Database
+    db.comments.find({lang:'Python'})
+
+f) Limit the number of rows in output
+    db.comments.find().limit(2)
+
+g) Count the number of rows in the output
+    db.comments.find().count()
+
+h) Update a row
+    db.comments.update({name: 'Shubham'},
+    {'name': 'Harry',
+        'lang': 'JavaScript',
+        'member_since': 51
+    }, {upsert: true})   
+
+i) Mongodb Increment Operator
+    db.comments.update({name: 'Rohan'},
+    {$inc:{
+        member_since: 2
+    }}) 
+
+j) Mongodb Rename Operator
+    db.comments.update({name: 'Rohan'},
+    {$rename:{
+        member_since: 'member'
+    }})
+
+k) Delete Row 
+    db.comments.remove({name: 'Harry'})
+
+l) Less than/Greater than/ Less than or Eq/Greater than or Eq
+    1) db.comments.find({member_since: {$lt: 90}})
+
+    2) db.comments.find({member_since: {$lte: 90}})
+
+    3) db.comments.find({member_since: {$gt: 90}})
+
+    4) db.comments.find({member_since: {$gte: 90}})
